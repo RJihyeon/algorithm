@@ -42,3 +42,20 @@ RRRRR</pre>
 
  <p>적록색약이 아닌 사람이 봤을 때의 구역의 개수와 적록색약인 사람이 봤을 때의 구역의 수를 공백으로 구분해 출력한다.</p>
 
+
+```markdown
+💡 10026 DFS/BFS 구현 시 주의 포인트
+
+[syntax]
+✅ `new boolean[N][N]` 하면 `visited`는 자동으로 `false`로 초기화된다.  
+✅ NullPointerException은 `new boolean[N][]` 같이 행을 초기화 안 하면 발생함.  
+✅ `visited` 배열 초기화는 `Arrays.fill(visited[i], false)`로 각 행을 초기화하면 편하다.  
+
+[semantic]
+✅ DFS는 하나의 구역(connected component)을 탐색하는 함수로 설계해야 함.  
+✅ 전체 map을 돌면서 방문 안 한 지점에서 DFS를 새로 시작해야 구역을 카운트할 수 있다.  
+✅ ❗ DFS 메서드 내부에 전체 map을 순회하는 반복문을 넣으면 구조가 꼬이고 잘못된 탐색을 하게 된다.  
+✅ 색약 처리 DFS에서는 `R/G`를 같은 색으로 취급하도록 조건문을 작성해야 한다.  
+✅ ❗ `Point(Pointer)` 클래스는 BFS 같은 경우 유용하지만 DFS에서는 좌표 `int x, y`로 처리하면 충분하다.  
+```
+
